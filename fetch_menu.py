@@ -213,7 +213,7 @@ def main():
     menu,rows=apply_data(base,nutrition,calendar,timestamp)
     (root/"data/menu.json").write_text(json.dumps(menu,ensure_ascii=False,indent=2),encoding="utf-8")
     (root/"data/nutrition.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding="utf-8")
-    for file in ["index.html","麦麦兔一乐-单文件完整版.html"]:
+    for file in ["index.html","麦门兔个乐-单文件完整版.html"]:
         embed(root/file,menu)
     print("成功：%s 条营养记录，%s 个菜单匹配，%s 条活动；价格仍为演示。" % (len(rows),menu["meta"]["nutritionMatched"],len(menu["campaigns"])))
 
