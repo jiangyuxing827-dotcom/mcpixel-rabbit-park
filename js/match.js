@@ -9,7 +9,7 @@ var MATCH_ART  = { burger:"burger", fries:"fries", nuggets:"nuggets", cup:"cup",
 var MATCH_NAME = { burger:"汉堡", fries:"薯条", nuggets:"麦乐鸡", cup:"可乐", swirl:"甜筒", cheese:"芝士" };
 var MATCH_N = 8, MATCH_CELL = 56;
 /* 棋盘单元格动态范围：桌面保持 56px 的大棋盘，手机按可用空间缩小，但不低于可点击下限 */
-var MATCH_CELL_MAX = 56, MATCH_CELL_MIN = 26;
+var MATCH_CELL_MAX = 56, MATCH_CELL_MIN = 16;
 
 var MATCH_LEVELS = [
   { id:1, name:"第一关 · 薯条热身", moves:20, goal:{ kind:"collect", type:"fries", n:15 },      blocks:0, desc:"消除 15 个薯条" },
@@ -61,10 +61,12 @@ function matchMeasure(){
   var wrap = host ? host.querySelector(".mt-board-wrap") : null;
   if(!wrap) return 0;
   var r = wrap.getBoundingClientRect();
-  var availW = Math.floor(r.width) || wrap.clientWidth || 320;
-  if(availW < 80) availW = 320;
+  var availW = Math.max(0, Math.floor(r.width) - 14);
+  if(availW < 16) return 0;
   var ctrl = host ? host.querySelector(".mt-ctrl") : null;
-  var reserve = (ctrl ? ctrl.offsetHeight : 48) + 28;
+  var side = host.querySelector(".mt-side");
+  var stacked = window.innerWidth <= 920;
+  var reserve = (ctrl ? ctrl.offsetHeight : 88) + (stacked && side ? side.offsetHeight : 0) + 40;
   var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight || 640;
   var availH = Math.floor(vh - r.top - reserve);
   if(availH < 180 || !isFinite(availH)) availH = Math.floor(vh * 0.54);
@@ -81,6 +83,7 @@ function matchResize(){
   match.dpr = dpr;
   var bw = Math.round(S * dpr);
   if(cv.width !== bw){ cv.width = bw; cv.height = bw; }
+  cv.style.boxSizing = "content-box";
   cv.style.width = S + "px";
   cv.style.height = S + "px";
 }
@@ -696,33 +699,52 @@ function matchBindCanvas(cv){
   var down = null;
   function cell(e){
     var r = cv.getBoundingClientRect();
-    var cx = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
-    var cy = e.touches && e.touches.length ? e.touches[0].clientY : e.clientY;
-    var sx = (MATCH_N*MATCH_CELL) / r.width, sy = (MATCH_N*MATCH_CELL) / r.height;
-    return { x:Math.floor((cx - r.left) * sx / MATCH_CELL), y:Math.floor((cy - r.top) * sy / MATCH_CELL) };
+    var x = e.clientX - r.left - cv.clientLeft;
+    var y = e.clientY - r.top - cv.clientTop;
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if(!w || !h || x < 0 || y < 0 || x >= w || y >= h) return null;
+    return {x:Math.floor(x / w * MATCH_N), y:Math.floor(y / h * MATCH_N)};
   }
-  cv.addEventListener("mousedown", function(e){ SFX.unlock(); down = cell(e); });
-  cv.addEventListener("mouseup", function(e){
-    if(!down || !matchIsPlayable()) return;
-    var up = cell(e);
-    if(matchCanSwapS(down.x, down.y, up.x, up.y)) matchTrySwap(down.x, down.y, up.x, up.y);
-    down = null;
-  });
-  cv.addEventListener("touchstart", function(e){ SFX.unlock(); if(e.cancelable) e.preventDefault(); down = cell(e); }, { passive:false });
-  cv.addEventListener("touchmove", function(e){ if(e.cancelable) e.preventDefault(); }, { passive:false });
-  cv.addEventListener("touchend", function(e){
-    if(e.cancelable) e.preventDefault();
-    if(!down || !matchIsPlayable()) return;
-    var t = e.changedTouches && e.changedTouches[0];
-    var up = null;
-    if(t){
-      var r = cv.getBoundingClientRect();
-      var sx = (MATCH_N*MATCH_CELL) / r.width, sy = (MATCH_N*MATCH_CELL) / r.height;
-      up = { x:Math.floor((t.clientX - r.left) * sx / MATCH_CELL), y:Math.floor((t.clientY - r.top) * sy / MATCH_CELL) };
+  function finish(up){
+    var start = down; down = null;
+    if(!start || !up || !matchIsPlayable()) return;
+    if(matchCanSwapS(start.x,start.y,up.x,up.y)){
+      match.sel = null; matchTrySwap(start.x,start.y,up.x,up.y);
+    }else if(start.x===up.x && start.y===up.y){
+      var prev = match.sel;
+      if(prev && matchCanSwapS(prev.x,prev.y,up.x,up.y)){
+        match.sel = null; matchTrySwap(prev.x,prev.y,up.x,up.y);
+      }else match.sel = prev && prev.x===up.x && prev.y===up.y ? null : up;
     }
-    if(up && matchCanSwapS(down.x, down.y, up.x, up.y)) matchTrySwap(down.x, down.y, up.x, up.y);
-    down = null;
-  });
+  }
+  function begin(e){ SFX.unlock(); down = cell(e); }
+  if(window.PointerEvent){
+    cv.addEventListener("pointerdown",function(e){
+      if(e.isPrimary===false || (e.button!==undefined && e.button!==0)) return;
+      if(e.cancelable) e.preventDefault(); begin(e);
+      if(down && cv.setPointerCapture) cv.setPointerCapture(e.pointerId);
+    });
+    cv.addEventListener("pointerup",function(e){
+      if(e.isPrimary===false) return;
+      if(e.cancelable) e.preventDefault(); finish(cell(e));
+    });
+    cv.addEventListener("pointercancel",function(){ down=null; });
+    cv.addEventListener("lostpointercapture",function(){ down=null; });
+  }else{
+    cv.addEventListener("mousedown",begin);
+    cv.addEventListener("mouseup",function(e){ finish(cell(e)); });
+    cv.addEventListener("mouseleave",function(){ down=null; });
+    cv.addEventListener("touchstart",function(e){
+      if(e.cancelable) e.preventDefault();
+      if(e.touches.length===1) begin(e.touches[0]); else down=null;
+    },{passive:false});
+    cv.addEventListener("touchmove",function(e){if(e.cancelable)e.preventDefault();},{passive:false});
+    cv.addEventListener("touchend",function(e){
+      if(e.cancelable)e.preventDefault();
+      finish(e.changedTouches.length ? cell(e.changedTouches[0]) : null);
+    },{passive:false});
+    cv.addEventListener("touchcancel",function(){down=null;});
+  }
 }
 /* 主绘制循环 */
 function matchStartLoop(){
