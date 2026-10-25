@@ -1,0 +1,115 @@
+/* =========================================================
+ * McPixel · 麦麦收藏馆（徽章图鉴 / 皮肤 / 扭蛋奖励 / 纪念卡）
+ * ========================================================= */
+.museum-hall{border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:14px;position:relative;
+  background:
+    repeating-linear-gradient(45deg,rgba(255,199,44,.10) 0 14px,transparent 14px 28px),
+    linear-gradient(180deg,#FFF6E0,#F7E7C6)}
+.museum-sign{position:absolute;top:-16px;left:18px;background:var(--yellow);color:var(--ink);
+  font-family:var(--font-px);font-weight:800;font-size:12px;padding:5px 12px;border:3px solid var(--ink);z-index:3}
+.museum-sign b{color:var(--red)}
+.museum-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px;position:relative;z-index:1}
+.museum-tab{border:3px solid var(--ink);background:var(--white);box-shadow:4px 4px 0 var(--ink);padding:9px 15px;cursor:pointer;font:800 13px var(--font-ui)}
+.museum-tab:hover{transform:translate(-1px,-1px)}
+.museum-tab.active{background:var(--yellow)}
+.museum-tab small{font-family:var(--font-px);font-weight:400;color:#8a6f5c;margin-left:6px}
+.museum-progress{background:var(--ink);color:var(--yellow);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  padding:10px 16px;font-family:var(--font-px);font-weight:800;font-size:14px;margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.museum-progress .p-bar{flex:1;min-width:140px;height:14px;background:#4a382c;border:2px solid var(--yellow);align-self:center}
+.museum-progress .p-fill{height:100%;background:repeating-linear-gradient(45deg,var(--yellow) 0 6px,var(--red) 6px 12px);transition:width .4s steps(10)}
+
+/* ---------- 徽章墙 ---------- */
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:16px;position:relative;z-index:1}
+.badge{background:var(--cream);border:3px solid var(--ink);box-shadow:var(--shadow);padding:16px 10px;text-align:center;border-radius:2px;position:relative;cursor:pointer}
+.badge:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.badge .badge-coin{width:76px;height:76px;margin:0 auto 10px;border-radius:50%;background:var(--ink);border:4px solid var(--yellow);display:grid;place-items:center;box-shadow:inset 0 0 0 3px rgba(255,255,255,.12)}
+.badge b{display:block;font-size:14px}
+.badge .badge-desc{font-size:12px;color:#8a6f5c;margin-top:2px}
+.badge .badge-rarity{font-family:var(--font-px);font-size:12px;color:var(--red);letter-spacing:2px;margin-top:6px}
+.badge .badge-date{font-family:var(--font-px);font-size:11px;color:var(--teal);margin-top:4px;font-weight:800}
+.badge.locked{opacity:.55}
+.badge.locked .badge-coin{filter:grayscale(1);border-color:#8a6f5c}
+.badge.locked .badge-rarity{color:#8a6f5c}
+.badge.new{animation:badgein .5s steps(4,end)}
+@keyframes badgein{from{transform:scale(.4) rotate(-12deg);opacity:0}}
+.badge .b-state{position:absolute;top:-10px;left:-6px;font-family:var(--font-px);font-size:10px;font-weight:800;
+  background:var(--ink);color:var(--yellow);padding:2px 7px;border:2px solid var(--ink);transform:rotate(-4deg)}
+.badge .b-state.limited{background:var(--honey);color:var(--ink)}
+.badge .b-state.window{background:var(--blue);color:#fff}
+.badge .b-state.gone{background:#8a6f5c;color:#fff}
+.badge .b-state.hidden-s{background:var(--night);color:var(--gold)}
+.badge.window-open{box-shadow:0 0 0 3px var(--blue),var(--shadow)}
+.badge .b-countdown{font-family:var(--font-px);font-size:10px;color:var(--blue);font-weight:800;margin-top:4px}
+
+/* 徽章详情 */
+.badge-detail{display:flex;gap:18px;align-items:center;text-align:left;flex-wrap:wrap}
+.badge-detail .bd-coin{width:110px;height:110px;flex:none;border-radius:50%;background:var(--ink);border:5px solid var(--yellow);display:grid;place-items:center;box-shadow:inset 0 0 0 3px rgba(255,255,255,.12)}
+.badge-detail .bd-info{flex:1;min-width:200px}
+.badge-detail h3{margin:0 0 4px;font-size:20px}
+.badge-detail .bd-rarity{font-family:var(--font-px);color:var(--red);font-weight:800;margin:6px 0}
+.badge-detail .bd-cond{font-size:13px;color:#5d4636;background:var(--paper);border:2px dashed #C9A45F;padding:8px 10px;margin:8px 0}
+.badge-detail .bd-date{font-family:var(--font-px);font-size:12px;color:var(--teal);font-weight:800}
+.badge-detail .bd-flavor{font-size:12px;color:#8a6f5c;font-style:italic}
+
+/* ---------- 扭蛋 / 宝箱奖励 ---------- */
+.gacha-stage{text-align:center;padding:10px 0}
+.gacha-chest{display:inline-block;position:relative;cursor:pointer;animation:chestwobble 1.2s steps(2,end) infinite}
+@keyframes chestwobble{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+.gacha-chest.opening{animation:chestshake .5s steps(5,end)}
+@keyframes chestshake{20%{transform:translate(-6px,-3px) rotate(-6deg)}60%{transform:translate(6px,3px) rotate(6deg)}}
+.gacha-burst{position:absolute;inset:-40px;pointer-events:none}
+.gacha-ray{position:absolute;left:50%;top:50%;width:8px;height:120px;background:linear-gradient(180deg,var(--yellow),transparent);transform-origin:top center;opacity:.85;animation:rayspin 3s linear infinite}
+@keyframes rayspin{to{transform:rotate(360deg)}}
+.gacha-rewards{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.reward-card{width:132px;background:var(--cream);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 8px;position:relative;transform-style:preserve-3d}
+.reward-card.flip{animation:cardflip .55s steps(6,end)}
+@keyframes cardflip{from{transform:rotateY(90deg) scale(.6);opacity:0}}
+.reward-card .rc-ico{width:64px;height:64px;margin:0 auto 8px;border-radius:50%;background:var(--ink);border:3px solid var(--yellow);display:grid;place-items:center}
+.reward-card b{display:block;font-size:13px}
+.reward-card small{display:block;font-size:11px;color:#8a6f5c;margin-top:2px}
+.reward-card .rc-new{position:absolute;top:-10px;right:-6px;background:var(--honey);color:var(--ink);font-family:var(--font-px);font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);transform:rotate(6deg)}
+.reward-card.dup{opacity:.75}
+.reward-card.dup .rc-ico{filter:grayscale(.7)}
+.coin-fly{position:fixed;z-index:130;pointer-events:none;font-family:var(--font-px);font-weight:800;color:var(--yellow);
+  text-shadow:2px 2px 0 var(--ink);font-size:14px;transition:all .7s cubic-bezier(.3,-0.2,.5,1)}
+
+/* ---------- 皮肤画廊 ---------- */
+.skin-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;position:relative;z-index:1}
+.skin-card{background:var(--cream);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px 10px;text-align:center;position:relative}
+.skin-card.locked{opacity:.6}
+.skin-card .sc-preview{height:74px;display:flex;align-items:center;justify-content:center;background:var(--paper);border:2px dashed #C9A45F;margin-bottom:10px}
+.skin-card.locked .sc-preview .art{filter:grayscale(1)}
+.skin-card b{display:block;font-size:14px}
+.skin-card small{display:block;font-size:11px;color:#8a6f5c;margin:4px 0 8px;min-height:32px}
+.skin-card .btn{width:100%}
+.skin-card .sc-equipped{position:absolute;top:-10px;right:-6px;background:var(--teal);font-family:var(--font-px);font-size:10px;font-weight:800;padding:2px 8px;border:2px solid var(--ink);transform:rotate(5deg)}
+
+/* ---------- 结局图鉴 ---------- */
+.ending-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;position:relative;z-index:1}
+.ending-card{background:var(--cream);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px;position:relative}
+.ending-card.locked{opacity:.55}
+.ending-card b{display:block;font-size:14px;margin-bottom:4px}
+.ending-card small{display:block;font-size:12px;color:#8a6f5c;line-height:1.6}
+.ending-card .e-icon{width:56px;height:56px;margin:0 auto 8px;border-radius:50%;background:var(--ink);border:3px solid var(--yellow);display:grid;place-items:center}
+.ending-card.locked .e-icon{filter:grayscale(1)}
+.ending-card .e-count{position:absolute;top:8px;right:8px;font-family:var(--font-px);font-size:11px;color:#8a6f5c;font-weight:800}
+
+/* ---------- 纪念卡 ---------- */
+.memorial-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;position:relative;z-index:1}
+.memorial-preview{background:var(--cream);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:0;overflow:hidden}
+.memorial-preview .mp-head{background:var(--gold);border-bottom:4px solid var(--ink);padding:14px;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.memorial-preview .mp-head b{font-size:18px}
+.memorial-preview .mp-head span{font-family:var(--font-px);font-size:11px;background:var(--ink);padding:3px 8px}
+.memorial-preview .mp-body{padding:16px}
+.mp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.mp-stat{background:var(--white);border:3px solid var(--ink);padding:8px;text-align:center}
+.mp-stat b{display:block;font-family:var(--font-px);font-size:18px;color:var(--red)}
+.mp-stat span{font-size:11px;color:#8a6f5c;font-weight:700}
+.mp-badges{display:flex;gap:6px;flex-wrap:wrap;background:var(--paper);border:2px dashed #C9A45F;padding:10px;min-height:56px;align-items:center}
+.mp-foot{border-top:3px solid var(--ink);padding:10px 14px;font-family:var(--font-px);font-size:10px;color:#8a6f5c;display:flex;justify-content:space-between;background:var(--white)}
+.memorial-side p{font-size:13px;color:#5d4636;line-height:1.8}
+.memorial-side .honest{font-size:12px;color:#8a6f5c;background:var(--paper);border:2px dashed #C9A45F;padding:8px;margin-top:12px}
+
+@media (max-width:920px){
+  .memorial-wrap{grid-template-columns:1fr}
+}

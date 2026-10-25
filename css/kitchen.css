@@ -1,0 +1,181 @@
+/* =========================================================
+ * McPixel · 像素厨房场景（汉堡创造工坊 / 脆汁鸡桶 / 酱料实验室）
+ * ========================================================= */
+.kitchen-stage{position:relative;border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:14px;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(42,27,20,.05) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(42,27,20,.05) 23px 24px),
+    linear-gradient(180deg,#F3E3C2,#FBEFCE)}
+.kitchen-sign{position:absolute;top:-16px;left:18px;background:var(--ink);color:var(--yellow);
+  font-family:var(--font-px);font-weight:800;font-size:12px;padding:5px 12px;border:3px solid var(--ink);z-index:3}
+.kitchen-sign b{color:var(--teal)}
+
+/* ---------- DIY 汉堡工坊 ---------- */
+/* 左：大型兔兔汉堡预览 · 右：配料面板 */
+.diy-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:16px;align-items:start;margin-top:8px}
+.diy-col-head{font-family:var(--font-px);font-size:12px;font-weight:800;color:#8a6f5c;margin:0 0 8px;letter-spacing:.08em}
+.ing-group{margin-bottom:12px}
+.ing-group-title{font-size:13px;font-weight:800;color:#5d4636;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.ing-row{display:flex;align-items:center;gap:8px;background:var(--white);border:3px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);padding:6px 8px;margin-bottom:6px;border-radius:2px}
+.ing-row .art{flex:none}
+.ing-info{flex:1;min-width:0}
+.ing-info b{display:block;font-size:13px;line-height:1.2}
+.ing-info small{font-family:var(--font-px);font-size:11px;color:#8a6f5c}
+.ing-ctrl{display:flex;align-items:center;gap:4px;flex:none}
+.ing-btn{width:26px;height:26px;border:3px solid var(--ink);background:var(--yellow);font:800 15px/1 var(--font-ui);cursor:pointer;color:var(--ink);padding:0;box-shadow:2px 2px 0 var(--ink)}
+.ing-btn:hover{background:var(--yellow-l)}
+.ing-btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+.ing-btn.minus{background:var(--cream)}
+.ing-num{min-width:22px;text-align:center;font-family:var(--font-px);font-weight:800;font-size:14px}
+.ing-row.maxed .ing-btn.plus{opacity:.35;cursor:not-allowed}
+
+.diy-preview{background:var(--white);border:3px solid var(--ink);box-shadow:var(--shadow);padding:12px;position:relative}
+.diy-preview::before{content:"";position:absolute;inset:6px;border:2px dashed #C9A45F;pointer-events:none}
+.diy-counter{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-px);font-size:12px;font-weight:800;margin-bottom:8px;position:relative;z-index:1}
+.diy-counter .patty-num{color:var(--red)}
+.diy-title-tag{background:var(--ink);color:var(--yellow);padding:2px 8px;border:2px solid var(--ink)}
+.diy-title-tag.epic{background:var(--honey);color:var(--ink)}
+.diy-title-tag.legend{background:var(--night);color:var(--gold);animation:tagpulse .8s steps(2,end) infinite}
+@keyframes tagpulse{50%{transform:scale(1.08)}}
+/* 创意模式标记：≥10 层肉饼时显示，明确「仅供娱乐」而非真实可售 */
+.diy-creative{margin-left:8px;background:var(--caramel);color:var(--paper);padding:2px 8px;border:2px dashed #fff;border-radius:2px;font-size:11px;letter-spacing:.04em}
+.burger-viewport{position:relative;height:430px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;
+  background:
+    radial-gradient(circle at 50% 22%,rgba(255,199,44,.18),transparent 60%),
+    repeating-linear-gradient(0deg,transparent 0 15px,rgba(216,38,44,.05) 15px 16px),
+    linear-gradient(180deg,#FFFDF6,#FBEFCE);
+  border:3px solid var(--ink);z-index:1}
+.burger-viewport.scrollable{overflow-y:auto}
+.burger-stack{display:flex;flex-direction:column;align-items:center;transform-origin:bottom center;padding:8px 0;will-change:transform}
+.burger-stack .layer{animation:layerdrop .28s steps(3,end)}
+.burger-stack .layer .art{filter:drop-shadow(2px 2px 0 rgba(42,27,20,.18))}
+@keyframes layerdrop{from{transform:translateY(-26px) scale(1.15);opacity:.2}}
+.burger-stack.shake{animation:stackshake .4s steps(4,end)}
+@keyframes stackshake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.burger-egg{position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none}
+.burger-egg .egg-title{display:inline-block;font-family:var(--font-px);font-weight:800;font-size:15px;color:var(--gold);background:var(--night);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:6px 14px;animation:eggpop .5s steps(4,end)}
+@keyframes eggpop{from{transform:scale(2.2) rotate(-8deg);opacity:0}}
+.burger-egg .egg-sub{display:block;margin-top:6px;font-size:12px;color:#8a6f5c;font-weight:700}
+.diy-scale-hint{position:relative;z-index:1;text-align:center;font-family:var(--font-px);font-size:11px;color:#8a6f5c;margin-top:8px;min-height:16px}
+/* ---------- 兔兔汉堡：监理兔子 + 表情切换 ---------- */
+.diy-bunny-row{display:flex;align-items:center;gap:10px;position:relative;z-index:1;margin-top:10px;
+  background:var(--cream);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 10px}
+.diy-bunny-copy{font-size:12px;color:var(--caramel);line-height:1.6}
+.diy-bunny-copy b{display:block;font-family:var(--font-px);font-size:13px;color:var(--ink)}
+.diy-expr-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;position:relative;z-index:1}
+.diy-expr{display:flex;flex-direction:column;align-items:center;gap:2px;border:3px solid var(--ink);background:var(--white);
+  box-shadow:3px 3px 0 var(--ink);padding:4px 8px;cursor:pointer;font-family:var(--font-px);font-size:10px;font-weight:800;color:var(--caramel)}
+.diy-expr:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.diy-expr.on{background:var(--gold);color:var(--ink)}
+.diy-expr .art{display:block}
+
+/* 兔兔汉堡脸层（始终位于最顶部） */
+.burger-stack .layer-face{position:relative;z-index:3;cursor:pointer}
+.burger-stack .layer-face .art{filter:drop-shadow(3px 3px 0 rgba(42,27,20,.2))}
+.burger-stack .layer-face.ear-pop .art{animation:earwiggle .6s steps(4,end)}
+@keyframes earwiggle{25%{transform:rotate(-5deg) scaleY(1.06)}60%{transform:rotate(5deg) scaleY(.97)}}
+.burger-stack.bounce{animation:burgerbounce .5s steps(4,end)}
+@keyframes burgerbounce{0%{transform:scale(1)}30%{transform:scale(1.06) translateY(-8px)}70%{transform:scale(.98) translateY(2px)}100%{transform:scale(1)}}
+/* 点击兔耳掉落的金色星星 */
+.ear-star{position:fixed;z-index:120;pointer-events:none;width:8px;height:8px;background:var(--gold);
+  box-shadow:0 0 6px rgba(255,199,44,.95);animation:earstar 1.3s steps(6,end) forwards}
+@keyframes earstar{
+  0%{opacity:0;transform:translate(0,0) scale(.4)}
+  20%{opacity:1;transform:translate(calc(var(--dx) * .3),-10px) scale(1.15)}
+  100%{opacity:0;transform:translate(var(--dx),46px) scale(.3)}
+}
+/* 汉堡缩小成卡片沿流星轨迹飞入购物车 */
+.fly-card{position:fixed;z-index:135;pointer-events:none;width:64px;height:64px;
+  transition:transform .8s cubic-bezier(.4,-.15,.6,1),opacity .8s ease-in;
+  filter:drop-shadow(0 0 10px rgba(255,199,44,.8))}
+.fly-trail{position:fixed;z-index:134;pointer-events:none;height:3px;transform-origin:0 50%;
+  background:linear-gradient(90deg,rgba(255,199,44,0),var(--gold) 55%,#FFF7E8);
+  filter:drop-shadow(0 0 5px rgba(255,199,44,.9));animation:flytrail .75s steps(5,end) forwards}
+@keyframes flytrail{0%{opacity:0;transform-origin:0 50%}25%{opacity:1}100%{opacity:0}}
+
+.diy-panel{background:var(--cream);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px}
+.diy-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.diy-stat{background:var(--white);border:3px solid var(--ink);padding:8px;text-align:center}
+.diy-stat b{display:block;font-family:var(--font-px);font-size:19px;color:var(--red)}
+.diy-stat span{font-size:11px;color:#8a6f5c;font-weight:700}
+.diy-name{width:100%;margin-bottom:10px}
+.diy-actions{display:flex;flex-direction:column;gap:8px}
+.diy-tip{font-size:12px;color:#8a6f5c;border-top:2px dotted #C9A45F;margin-top:10px;padding-top:8px}
+.diy-saved{margin-top:14px;border-top:3px solid var(--ink);padding-top:10px}
+.diy-saved h4{margin:0 0 8px;font-size:14px}
+.diy-saved-list{display:flex;gap:8px;flex-wrap:wrap}
+.diy-saved-item{border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700}
+.diy-saved-item:hover{background:var(--yellow-l)}
+.diy-saved-item small{display:block;font-family:var(--font-px);color:#8a6f5c;font-weight:400}
+
+/* 收藏卡 */
+.collect-card{background:var(--cream);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:0;overflow:hidden;max-width:340px;margin:0 auto}
+.collect-card .cc-head{background:var(--gold);color:var(--ink);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid var(--ink)}
+.collect-card .cc-head b{font-size:16px}
+.collect-card .cc-head span{font-family:var(--font-px);font-size:11px;background:var(--ink);padding:2px 8px}
+.collect-card .cc-art{background:var(--paper);border-bottom:3px solid var(--ink);padding:14px;display:flex;justify-content:center;max-height:260px;overflow:hidden}
+.collect-card .cc-body{padding:14px}
+.collect-card .cc-name{font-family:var(--font-px);font-weight:800;font-size:18px;margin:0 0 6px}
+.collect-card .cc-meta{display:flex;justify-content:space-between;font-family:var(--font-px);font-size:13px;font-weight:800;border-top:2px dotted var(--ink);border-bottom:2px dotted var(--ink);padding:8px 0;margin-bottom:8px}
+.collect-card .cc-meta b{color:var(--red)}
+.collect-card .cc-flavor{font-size:12px;color:#8a6f5c}
+.collect-card .cc-foot{border-top:3px solid var(--ink);padding:8px 14px;font-family:var(--font-px);font-size:10px;color:#8a6f5c;display:flex;justify-content:space-between;background:var(--white)}
+
+/* ---------- 脆汁鸡桶 ---------- */
+.kitchen-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-top:8px}
+.bucket-builder{background:var(--white);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px;position:relative}
+.bucket-builder::before{content:"";position:absolute;inset:6px;border:2px dashed #C9A45F;pointer-events:none}
+.bucket-stage{position:relative;z-index:1;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;justify-content:center;
+  background:linear-gradient(180deg,#FFFDF6,#FBEFCE);border:3px solid var(--ink);padding:12px;margin-bottom:12px;min-height:170px}
+.bucket-art-wrap{position:relative;flex:none}
+.bucket-pieces{position:absolute;left:50%;transform:translateX(-50%);bottom:52%;display:flex;flex-wrap:wrap;gap:2px;justify-content:center;width:86px}
+.bucket-pieces .piece{cursor:pointer;border:none;background:none;padding:0;transition:transform .1s}
+.bucket-pieces .piece:hover{transform:translateY(-3px)}
+.bucket-pieces .piece:active{transform:scale(.9)}
+.bucket-info{flex:1;min-width:200px}
+.bucket-size-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.bucket-size{border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);padding:8px 12px;cursor:pointer;font-weight:800;font-size:13px}
+.bucket-size.active{background:var(--yellow)}
+.bucket-size small{display:block;font-family:var(--font-px);font-weight:400;color:#8a6f5c}
+.bucket-size.active small{color:#6b4d10}
+.bucket-addons{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.bucket-addon{display:flex;align-items:center;gap:8px;background:var(--cream);border:3px solid var(--ink);padding:6px 10px}
+.bucket-addon .art{flex:none}
+.bucket-addon b{flex:1;font-size:13px}
+.bucket-addon small{font-family:var(--font-px);color:#8a6f5c}
+.bucket-sauces{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.bucket-total{display:flex;justify-content:space-between;align-items:baseline;border-top:3px dotted var(--ink);padding-top:10px;font-family:var(--font-px);font-weight:800}
+.bucket-total b{color:var(--red);font-size:20px}
+.bucket-actions{display:flex;gap:8px;margin-top:10px}
+.bucket-actions .btn{flex:1}
+
+/* ---------- 薯条酱料实验室 ---------- */
+.sauce-lab{background:var(--white);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px;position:relative}
+.sauce-lab::before{content:"";position:absolute;inset:6px;border:2px dashed #C9A45F;pointer-events:none}
+.sauce-stage{position:relative;z-index:1;background:linear-gradient(180deg,#FFFDF6,#FBEFCE);border:3px solid var(--ink);padding:12px;margin-bottom:12px;display:flex;align-items:flex-end;justify-content:center;gap:16px;min-height:150px}
+.fries-dip{position:relative}
+.fries-dip .dip-blob{position:absolute;left:50%;transform:translateX(-50%);bottom:-4px;height:12px;border:3px solid var(--ink);border-radius:0 0 8px 8px;animation:dipin .3s steps(3,end)}
+@keyframes dipin{from{transform:translateX(-50%) scaleY(0);transform-origin:top}}
+.sauce-shelf{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin-bottom:10px}
+.sauce-item{border:3px solid var(--ink);background:var(--cream);box-shadow:3px 3px 0 var(--ink);padding:8px 6px;cursor:pointer;text-align:center;font-size:12px;font-weight:700;border-radius:2px}
+.sauce-item:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.sauce-item.on{background:var(--yellow)}
+.sauce-item .art{margin:0 auto 4px}
+.sauce-item small{display:block;font-family:var(--font-px);color:#8a6f5c;font-weight:400}
+.sauce-item.on::after{content:"✓ 已选";display:block;font-family:var(--font-px);font-size:10px;color:var(--teal);font-weight:800}
+.sauce-total{display:flex;justify-content:space-between;align-items:baseline;border-top:3px dotted var(--ink);padding-top:10px;font-family:var(--font-px);font-weight:800}
+.sauce-total b{color:var(--red);font-size:20px}
+.sauce-actions{display:flex;gap:8px;margin-top:10px}
+.sauce-actions .btn{flex:1}
+.sauce-tip{font-size:12px;color:#8a6f5c;margin-top:8px}
+
+@media (max-width:980px){
+  .diy-layout{grid-template-columns:1fr}
+  .kitchen-layout{grid-template-columns:1fr}
+  .burger-viewport{height:340px}
+}
+@media (prefers-reduced-motion:reduce){
+  .burger-stack.bounce,.burger-stack .layer-face.ear-pop .art,.ear-star,.fly-card,.fly-trail{animation:none!important;transition:none!important}
+}

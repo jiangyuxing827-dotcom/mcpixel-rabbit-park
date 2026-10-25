@@ -1,0 +1,408 @@
+/* =========================================================
+ * McPixel · 麦麦游戏厅（街机厅 / CRT 屏幕 / 人生模拟器 / 贪吃蛇）
+ * ========================================================= */
+.arcade-hall{border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:14px;position:relative;
+  background:
+    repeating-linear-gradient(45deg,rgba(244,163,64,.10) 0 14px,transparent 14px 28px),
+    linear-gradient(180deg,#FDF3DC,#F7E7C6)}
+.arcade-sign{position:absolute;top:-16px;left:18px;background:var(--night);color:var(--gold);
+  font-family:var(--font-px);font-weight:800;font-size:12px;padding:5px 12px;border:3px solid var(--ink);z-index:3}
+.arcade-sign b{color:var(--yellow)}
+.arcade-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px;position:relative;z-index:1}
+.arcade-tab{border:3px solid var(--ink);background:var(--white);box-shadow:4px 4px 0 var(--ink);
+  padding:10px 16px;cursor:pointer;font:800 14px var(--font-ui);display:flex;align-items:center;gap:8px}
+.arcade-tab:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.arcade-tab.active{background:var(--gold)}
+.arcade-tab small{font-family:var(--font-px);font-weight:400;color:#8a6f5c}
+.arcade-tab.active small{color:#6b4d10}
+
+/* CRT 屏幕 */
+.crt{position:relative;background:#1F2238;border:4px solid var(--ink);box-shadow:inset 0 0 0 4px #76593C,8px 8px 0 var(--ink);border-radius:10px;overflow:hidden}
+.crt::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:8;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.045) 0 1px,transparent 1px 3px)}
+.crt::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:7;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(20,10,30,.35) 100%)}
+.crt-inner{position:relative;z-index:2;padding:18px;color:#ffe9b0;font-family:var(--font-px)}
+.crt-glow{animation:crtflicker 4s steps(2,end) infinite}
+@keyframes crtflicker{48%{opacity:.97}50%{opacity:.9}52%{opacity:.98}}
+
+/* ---------- 麦门人生模拟器 ---------- */
+.life-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:2px solid #4a382c;padding-bottom:10px;margin-bottom:12px}
+.life-head h3{margin:0;font-size:17px;color:var(--yellow)}
+.life-head .life-step{font-size:11px;color:#C9B89A}
+.life-text{font-size:14px;line-height:1.9;min-height:76px;white-space:pre-wrap}
+.life-text .hl{color:var(--yellow);font-weight:800}
+.life-text .good{color:#8ce05a}
+.life-text .bad{color:#ff8a7a}
+.life-choices{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.life-choice{text-align:left;border:3px solid #8A6B45;background:#2E3154;color:#ffe9b0;padding:10px 14px;cursor:pointer;
+  font:700 13px/1.5 var(--font-ui);box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+.life-choice:hover{background:#3D4170;transform:translate(-1px,-1px)}
+.life-choice:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.4)}
+.life-choice .tag{background:var(--purple);color:#fff;margin-right:8px}
+.life-attr{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;border-top:2px solid #4a382c;padding-top:10px}
+.life-attr span{background:#1F2238;border:2px solid #8A6B45;padding:3px 8px;font-size:11px}
+.life-attr b{color:var(--yellow)}
+.life-idcard{display:flex;gap:14px;align-items:center;background:#1F2238;border:3px solid #8A6B45;padding:12px;margin-bottom:12px}
+.life-idcard .art{flex:none}
+.life-idcard b{color:var(--yellow);font-size:15px}
+.life-idcard small{display:block;color:#C9B89A;font-size:11px;line-height:1.7}
+.life-ending{text-align:center;padding:8px 0}
+.life-ending .ending-title{font-size:22px;color:var(--gold);text-shadow:3px 3px 0 #8A4A1F;margin:10px 0}
+.life-ending .ending-card{display:inline-block;background:#1F2238;border:3px solid var(--gold);padding:8px 16px;font-size:12px;color:#ffe9b0;margin-top:8px}
+.life-collection{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;border-top:2px solid #4a382c;padding-top:10px}
+.life-collection .lc-item{font-size:11px;border:2px solid #5A4A38;padding:3px 8px;color:#8A6B45}
+.life-collection .lc-item.got{color:var(--gold);border-color:var(--gold)}
+.life-start{text-align:center;padding:26px 10px}
+.life-start h3{color:var(--yellow);font-size:20px;margin:0 0 8px}
+.life-start p{font-size:13px;color:#C9B89A;max-width:46em;margin:0 auto 16px;line-height:1.8}
+.life-identity{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.life-id-opt{border:3px solid #8A6B45;background:#2E3154;color:#ffe9b0;padding:14px 10px;cursor:pointer;text-align:center;font:800 13px var(--font-ui)}
+.life-id-opt:hover{background:#3D4170;transform:translate(-1px,-1px)}
+.life-id-opt .art{margin:0 auto 8px}
+.life-id-opt small{display:block;font-weight:400;font-size:11px;color:#C9B89A;margin-top:4px}
+
+/* ---------- 像素贪吃蛇 ---------- */
+.snake-layout{display:grid;grid-template-columns:1fr 250px;gap:14px;align-items:start}
+.snake-main{display:flex;flex-direction:column;align-items:center}
+#snakeCanvas{background:#FBF0D8;border:4px solid var(--ink);box-shadow:6px 6px 0 rgba(0,0,0,.4);image-rendering:pixelated;touch-action:none;max-width:100%;height:auto;aspect-ratio:1/1}
+.snake-hud{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.snake-hud span{background:#1F2238;border:2px solid #8A6B45;padding:4px 12px;font-size:12px}
+.snake-hud b{color:var(--yellow)}
+.snake-pad{display:grid;grid-template-columns:repeat(3,54px);grid-template-rows:repeat(2,44px);gap:6px;justify-content:center;margin:6px 0}
+.snake-pad button{border:3px solid #8A6B45;background:#2E3154;color:#FFE9B0;font:800 18px var(--font-ui);cursor:pointer;box-shadow:3px 3px 0 rgba(0,0,0,.4)}
+.snake-pad button:hover{background:#3D4170}
+.snake-pad button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.4)}
+.snake-pad .pad-up{grid-column:2;grid-row:1}
+.snake-pad .pad-left{grid-column:1;grid-row:2}
+.snake-pad .pad-down{grid-column:2;grid-row:2}
+.snake-pad .pad-right{grid-column:3;grid-row:2}
+.snake-side{display:flex;flex-direction:column;gap:12px}
+.snake-side h4{margin:0;font-size:14px;color:var(--yellow)}
+.snake-btns{display:flex;gap:8px;flex-wrap:wrap}
+.snake-btns .btn{flex:1;min-width:70px}
+.skin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.skin-item{border:3px solid #8A6B45;background:#2E3154;padding:6px 4px;cursor:pointer;text-align:center;color:#FFE9B0;font-size:11px;font-weight:700}
+.skin-item:hover{background:#3D4170}
+.skin-item.equipped{border-color:var(--yellow);background:#43325e}
+.skin-item.locked{opacity:.5}
+.skin-item .art{margin:0 auto 4px}
+.skin-item small{display:block;font-weight:400;font-size:10px;color:#C9B89A}
+.snake-board{background:#1F2238;border:3px solid #8A6B45;padding:10px}
+.snake-board ol{margin:0;padding-left:20px;font-size:12px;line-height:2}
+.snake-board .me{color:var(--yellow);font-weight:800}
+.theme-row{display:flex;gap:6px;flex-wrap:wrap}
+.theme-chip{border:2px solid #8A6B45;background:#2E3154;color:#FFE9B0;font-size:11px;padding:4px 8px;cursor:pointer;font-family:var(--font-px)}
+.theme-chip:hover{background:#3D4170}
+.theme-chip.active{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.theme-chip.live{border-color:var(--teal)}
+.snake-tip{font-size:11px;color:#C9B89A;line-height:1.7}
+
+/* =========================================================
+ * V2 · 人生档案卡 / 结局图鉴分组
+ * ========================================================= */
+.life-archive{margin:10px auto;max-width:440px;background:var(--cream);border:3px solid var(--ink);
+  box-shadow:4px 4px 0 var(--ink);padding:10px}
+.la-head{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-px);
+  font-size:11px;font-weight:800;color:var(--caramel);border-bottom:2px dotted #D9B98A;padding-bottom:6px;margin-bottom:8px}
+.la-row{display:flex;align-items:center;justify-content:center;gap:10px}
+.la-mid{text-align:center;line-height:1.3}
+.la-mid b{display:block;font-size:14px}
+.la-mid small{font-size:11px;color:var(--caramel)}
+.la-attrs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.la-attrs span{font-family:var(--font-px);font-size:10px;background:var(--night);color:#FFE9B0;padding:3px 8px;border:2px solid #8A6B45}
+.la-log{margin-top:8px;text-align:center;font-size:12px;color:var(--caramel)}
+.lc-count{font-family:var(--font-px);font-size:11px;color:var(--caramel);margin-bottom:6px}
+.lc-group{display:flex;align-items:center;gap:6px;margin:8px 0 4px}
+.lc-cat{font-family:var(--font-px);font-size:10px;font-weight:800;padding:2px 7px;border:2px solid var(--ink)}
+.lc-cat.legend{background:var(--gold);color:var(--ink)}
+.lc-cat.rare{background:var(--teal);color:var(--white)}
+.lc-cat.absurd{background:var(--red);color:var(--white)}
+.lc-cat.normal{background:var(--cream);color:var(--ink)}
+.lc-items{display:flex;flex-wrap:wrap;gap:5px}
+.lc-item.got.legend{border-color:var(--gold)}
+.lc-item.got.rare{border-color:var(--teal)}
+.lc-item.got.absurd{border-color:var(--red)}
+
+/* =========================================================
+ * V2 · 麦麦打工日记
+ * ========================================================= */
+.work-head{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--font-px);font-size:11px;
+  color:#FFE9B0;background:var(--night);border:3px solid #8A6B45;padding:8px 10px;margin-bottom:10px}
+.work-customers{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.work-cust{display:flex;gap:8px;background:#2E3154;border:3px solid #8A6B45;padding:8px;cursor:pointer}
+.work-cust.active{border-color:var(--yellow);box-shadow:0 0 0 2px var(--yellow)}
+.wc-avatar{flex:none}
+.wc-body{flex:1;min-width:0}
+.wc-name{font-size:13px;font-weight:800;color:#FFE9B0;display:flex;align-items:baseline;gap:6px}
+.wc-name small{font-weight:400;font-size:11px;color:#C9B89A}
+.wc-order{font-size:12px;color:var(--white);line-height:1.5;margin:4px 0}
+.wc-order b{color:var(--yellow)}
+.wc-pat{height:8px;background:#1F2238;border:2px solid #8A6B45}
+.wc-pat i{display:block;height:100%;transition:width .12s linear}
+.wc-pat.ok i{background:var(--teal)}
+.wc-pat.warn i{background:var(--yellow)}
+.wc-pat.bad i{background:var(--red)}
+.work-hint{font-size:12px;color:var(--yellow);background:var(--night);border:2px dashed #8A6B45;padding:6px 8px;margin:8px 0}
+.work-mid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.work-panel{background:var(--cream);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:10px}
+.work-panel h4{font-family:var(--font-px);font-size:12px;margin:0 0 6px;display:flex;flex-direction:column}
+.wp-sub{font-weight:400;font-size:10px;color:var(--caramel)}
+.work-tray{min-height:44px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:var(--white);
+  border:2px dashed #D9B98A;padding:6px;margin-bottom:8px}
+.wt-empty{font-size:12px;color:var(--caramel)}
+.wt-chip{border:2px solid var(--ink);background:var(--yellow-l);cursor:pointer;padding:2px 4px;display:flex;align-items:center;gap:2px;font-size:11px}
+.work-parts{display:flex;flex-wrap:wrap;gap:5px}
+.wp-btn{border:3px solid var(--ink);background:var(--white);cursor:pointer;padding:4px 6px;
+  display:flex;align-items:center;gap:4px;font:800 11px var(--font-ui);box-shadow:2px 2px 0 var(--ink)}
+.wp-btn:hover{background:var(--yellow-l)}
+.wp-btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+/* 触控友好：食材按钮不小于 44×44，手机端也能一次点中 */
+.wp-btn{min-width:44px;min-height:44px;justify-content:center;flex:1 1 auto;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.wp-btn.lack{background:var(--paper);color:#A89272;border-style:dashed}
+.wp-btn.lack:active{transform:none}
+.wp-btn small{font-weight:400;font-size:9px;color:#A89272}
+.wt-chip{min-width:44px;min-height:40px;justify-content:center;touch-action:manipulation}
+.wt-chip:active{transform:translate(2px,2px)}
+.work-stock{margin-top:8px;font-family:var(--font-px);font-size:10px;color:var(--caramel)}
+.work-cook{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.wcook-col{background:var(--night);border:3px solid #8A6B45;padding:8px}
+.wcook-col h4{font-family:var(--font-px);font-size:11px;color:var(--yellow);margin:0 0 6px}
+.wb-item{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:11px;color:#FFE9B0}
+.wb-item span{width:52px;flex:none}
+.wb-bar{flex:1;height:8px;background:#1F2238;border:2px solid #8A6B45}
+.wb-bar i{display:block;height:100%;background:var(--yellow)}
+.wb-item b{width:34px;text-align:right;font-size:10px}
+.wcook-col.deliv{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px}
+.work-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.work-clear{text-align:center;padding:20px}
+.wc-art{margin-bottom:10px}
+.wc-line{margin:6px 0;font-size:14px}
+.wc-line.small{font-size:12px;color:#C9B89A}
+.wc-all{font-family:var(--font-px);font-size:12px;color:var(--yellow)}
+.work-start{text-align:center;padding:10px}
+.work-levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin:12px 0;text-align:left}
+.wl-item{background:var(--night);border:2px solid #8A6B45;padding:6px 8px}
+.wl-item b{display:block;font-size:12px;color:var(--yellow)}
+.wl-item small{font-size:11px;color:#C9B89A}
+.work-side{margin-top:10px;background:var(--cream);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:10px}
+.work-side h4{font-family:var(--font-px);font-size:11px;margin:8px 0 4px}
+.wrank{display:flex;align-items:center;gap:8px}
+.wrank b{display:block;font-size:14px}
+.wrank small{font-size:11px;color:var(--caramel)}
+.wnext{font-size:12px;color:var(--caramel);margin:4px 0}
+.wstat{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dotted #D9B98A}
+
+/* =========================================================
+ * V2 · 麦麦切切乐
+ * ========================================================= */
+.slice-shell{max-width:560px;margin:0 auto;text-align:center}
+.slice-shell.play{text-align:left}
+.sl-hud{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-family:var(--font-px);
+  font-size:11px;color:#FFE9B0;background:var(--night);border:3px solid #8A6B45;padding:6px 8px;margin-bottom:8px}
+.sl-canvas-wrap{width:100%;display:flex;justify-content:center}
+#sliceCanvas{background:#282B46;border:4px solid var(--ink);
+  box-shadow:6px 6px 0 rgba(0,0,0,.4);image-rendering:pixelated;touch-action:none;display:block}
+.slice-btns{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.slice-tip{font-size:11px;color:#C9B89A;text-align:center;margin-top:6px}
+.slice-start{text-align:center;padding:10px}
+.slice-modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px;margin-top:10px}
+.sm-btn{border:3px solid var(--ink);background:var(--yellow);cursor:pointer;padding:8px;
+  text-align:left;box-shadow:3px 3px 0 var(--ink)}
+.sm-btn:hover{background:var(--yellow-l)}
+.sm-btn b{display:block;font-size:13px}
+.sm-btn small{font-size:11px;color:var(--caramel)}
+.sl-result{text-align:center;padding:16px}
+.sl-row{display:flex;justify-content:space-between;max-width:260px;margin:5px auto;font-size:14px}
+
+/* =========================================================
+ * V2 · 麦麦消消乐
+ * ========================================================= */
+.match-start{text-align:center;padding:10px}
+.match-modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:10px 0}
+.mm-btn{border:3px solid var(--ink);background:var(--yellow);cursor:pointer;padding:8px;text-align:left;box-shadow:3px 3px 0 var(--ink)}
+.mm-btn:hover{background:var(--yellow-l)}
+.mm-btn b{display:block;font-size:13px}
+.mm-btn small{font-size:11px;color:var(--caramel)}
+.match-levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px;text-align:left}
+.ml-btn{border:3px solid var(--ink);background:var(--white);cursor:pointer;padding:6px 8px;text-align:left}
+.ml-btn:hover{background:var(--yellow-l)}
+.ml-btn.locked{opacity:.5;cursor:not-allowed}
+.ml-btn b{display:block;font-size:12px}
+.ml-btn small{font-size:11px;color:var(--caramel)}
+.match-shell{max-width:640px;margin:0 auto}
+.mt-hud{background:var(--night);border:3px solid #8A6B45;padding:8px;margin-bottom:8px}
+.mt-title{font-family:var(--font-px);font-size:14px;font-weight:800;color:var(--yellow);margin-bottom:6px}
+.mt-title small{display:block;font-size:10px;color:#C9B89A;font-weight:400}
+.mt-stats{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--font-px);font-size:11px;color:#FFE9B0}
+.mt-goal{margin-top:6px;font-size:12px;color:var(--yellow)}
+.mt-body{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:start}
+/* 棋盘容器：宽度与画布解耦，供 ResizeObserver 稳定测量（不会因画布变化回环） */
+.mt-board-wrap{width:100%;display:flex;justify-content:center;position:relative}
+#matchCanvas{background:var(--paper);border:4px solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);image-rendering:pixelated;touch-action:none;display:block}
+.mt-veil{position:absolute;inset:0;background:rgba(40,43,70,.82);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;cursor:pointer;z-index:2}
+.mt-veil b{font-family:var(--font-px);font-size:16px;color:var(--yellow)}
+.mt-veil span{font-size:11px;color:#FFE9B0}
+/* 关键修复：.mt-veil 自带 display:flex，会覆盖 hidden 属性的 UA display:none，
+   导致「已暂停」遮罩一直显示并拦截棋盘点击。必须显式处理 hidden 状态。 */
+.mt-veil[hidden]{display:none}
+.mt-ctrl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.mt-side{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--cream);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:10px}
+.mt-energy{width:100%;text-align:center}
+.mt-energy span{font-family:var(--font-px);font-size:10px;color:var(--caramel)}
+.me-bar{height:10px;background:var(--paper);border:2px solid var(--ink);margin-top:3px}
+.me-bar i{display:block;height:100%;background:var(--yellow);width:0}
+.match-result{text-align:center;padding:16px}
+.mr-art{margin-bottom:10px}
+.mr-row{display:flex;justify-content:space-between;max-width:260px;margin:5px auto;font-size:14px}
+.mr-stars{font-size:24px;color:var(--gold);margin:8px 0}
+
+.coin-chip{background:var(--gold);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);
+  font-family:var(--font-px);font-size:11px;font-weight:800;padding:4px 9px;margin-left:8px;white-space:nowrap}
+
+@media (max-width:920px){
+  .work-mid{grid-template-columns:1fr}
+  .work-cook{grid-template-columns:1fr}
+  .mt-body{grid-template-columns:1fr}
+  .mt-side{flex-direction:row;flex-wrap:wrap;justify-content:center}
+}
+/* ---- 消消乐：手机竖屏紧凑布局，棋盘优先占据可用空间 ---- */
+@media (max-width:640px){
+  .match-shell{max-width:100%}
+  .mt-hud{padding:6px;margin-bottom:6px}
+  .mt-title{font-size:12px;margin-bottom:4px}
+  .mt-stats{gap:6px;font-size:10px}
+  .mt-goal{font-size:11px}
+  .mt-body{gap:6px}
+  .mt-side{padding:6px;gap:6px}
+  .mt-ctrl{gap:5px;margin-top:8px}
+  .mt-ctrl .btn{flex:1 1 auto;min-height:40px}
+}
+@media (max-width:640px) and (max-height:740px){
+  /* 较矮屏幕：压缩装饰区，优先保证棋盘与按钮完整可见 */
+  .mt-side{display:none}
+  .mt-hud{padding:4px 6px}
+}
+@media (max-width:400px){
+  .mt-ctrl .btn{font-size:11px;padding:6px 8px}
+}
+@media (max-width:920px){
+  .snake-layout{grid-template-columns:1fr}
+  .snake-side{flex-direction:row;flex-wrap:wrap}
+  .snake-side>div{flex:1 1 240px}
+}
+
+/* =========================================================
+ * V2.6 · 麦门人格研究所
+ * ========================================================= */
+.mb-intro,.mb-quiz,.mb-reveal,.mb-result,.mb-dex,.mb-view,.mb-pair{text-align:center;padding:8px}
+.mb-lab{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin-bottom:8px}
+.mb-sub{font-size:13px;color:var(--caramel);margin:2px 0 8px}
+.mb-quote{font-size:12px;color:#8A6B45;background:var(--paper);border:2px solid #D9B98A;
+  padding:8px 10px;margin:8px auto;max-width:520px;line-height:1.7}
+.mb-last{font-size:12px;color:#8A6B45;margin:6px 0}
+.mb-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.mb-note{font-size:11px;color:#A89272;margin-top:10px}
+
+/* 答题 */
+.mb-prog{height:8px;background:var(--paper);border:2px solid var(--ink);margin-bottom:8px}
+.mb-prog i{display:block;height:100%;background:var(--yellow)}
+.mb-qhead{display:flex;justify-content:space-between;font-family:var(--font-px);font-size:11px;color:#8A6B45}
+.mb-qdim{font-weight:800}
+.mb-scene{background:var(--night);border:3px solid #8A6B45;padding:10px;margin:8px 0;color:#FFE9B0;
+  display:flex;align-items:center;gap:10px;text-align:left}
+.mb-scene p{margin:0;font-size:14px;line-height:1.6}
+.mb-mascot{margin:6px 0}
+.mb-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.mb-opt{border:3px solid var(--ink);background:var(--white);cursor:pointer;padding:10px;text-align:left;
+  box-shadow:4px 4px 0 var(--ink);display:flex;gap:8px;align-items:flex-start;min-height:64px}
+.mb-opt:hover{background:var(--yellow-l)}
+.mb-opt b{font-family:var(--font-px);font-size:16px;color:var(--caramel);flex:0 0 auto}
+.mb-opt span{font-size:13px;line-height:1.6}
+/* 选中反馈：点击后立即高亮被选中的一项，避免「点了没反应」的错觉 */
+.mb-opt{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.mb-opt:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.mb-opt.on{background:var(--yellow);box-shadow:0 0 0 3px var(--gold) inset,4px 4px 0 var(--ink)}
+.mb-opt.on b{color:var(--night)}
+.mb-opt.off{opacity:.45}
+
+/* 揭晓 */
+.mb-box{font-size:0;animation:mbbounce .6s steps(4,end) infinite alternate}
+@keyframes mbbounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.mb-dims{display:grid;gap:6px;max-width:420px;margin:12px auto;text-align:left}
+.mb-dim{opacity:.4;transition:opacity .3s}
+.mb-dim.on{opacity:1}
+.mb-dim span{font-family:var(--font-px);font-size:11px;color:var(--caramel)}
+.mbd-bar{height:10px;background:var(--paper);border:2px solid var(--ink);margin:2px 0}
+.mbd-bar i{display:block;height:100%;background:var(--yellow);transition:width .35s steps(6,end)}
+.mb-dim small{font-size:10px;color:#8A6B45}
+.mb-rvtxt{font-family:var(--font-px);font-size:13px;color:var(--caramel)}
+
+/* 结果卡 */
+.mb-card{background:var(--cream);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:14px;max-width:420px;margin:0 auto;text-align:center}
+.mbc-head{display:flex;align-items:center;gap:6px;font-family:var(--font-px);font-size:12px;color:var(--caramel);
+  border-bottom:2px dotted #D9B98A;padding-bottom:6px}
+.mbc-head small{margin-left:auto;font-weight:400;color:#A89272}
+.mbc-art{display:flex;align-items:center;justify-content:center;gap:6px;margin:10px 0}
+.mbc-code{font-family:var(--font-px);font-size:26px;font-weight:800;color:var(--night);letter-spacing:2px}
+.mbc-name{font-size:17px;font-weight:800;color:var(--caramel);margin:2px 0 8px}
+.mbc-food{font-size:12px;color:#8A6B45;display:flex;align-items:center;justify-content:center;gap:6px}
+.mbc-keys{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:8px 0}
+.mbc-keys span{background:var(--yellow);border:2px solid var(--ink);font-size:11px;padding:2px 7px}
+.mbc-dims{display:grid;gap:5px;margin:10px 0;text-align:left}
+.mbcd span{font-family:var(--font-px);font-size:10px;color:var(--caramel)}
+.mbcd-bar{height:8px;background:var(--paper);border:2px solid var(--ink);margin:2px 0}
+.mbcd-bar i.a{display:block;height:100%;background:var(--yellow)}
+.mbcd small{font-size:10px;color:#8A6B45}
+.mbc-desc{font-size:13px;line-height:1.8;color:#5F4531;margin:8px 0}
+.mbc-slogan{font-size:13px;color:var(--caramel);font-weight:700}
+.mb-combo{margin-top:12px}
+.mb-combo h4{font-family:var(--font-px);font-size:12px;color:var(--caramel);margin-bottom:6px}
+.mbc-combo{border:3px dashed #B08A54;padding:10px;max-width:420px;margin:0 auto}
+.mbc-combo b{display:block;font-size:15px;color:var(--night)}
+.mbc-combo small{display:block;font-size:11px;color:#A89272;margin:3px 0 6px}
+.mbcc-ings{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.mbcc-ings span{background:var(--paper);border:2px solid #D9B98A;font-size:11px;padding:2px 7px}
+
+/* 图鉴 */
+.mb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:520px;margin:10px auto}
+.mb-cell{border:3px solid var(--ink);background:var(--white);padding:6px 3px;cursor:pointer;text-align:center}
+.mb-cell.got{background:var(--yellow-l)}
+.mb-cell b{display:block;font-size:11px;margin-top:3px}
+.mb-cell small{display:block;font-size:9px;color:#A89272}
+.mb-lock{display:block;height:56px;line-height:56px;font-family:var(--font-px);font-size:12px;color:#C4B294}
+.mb-view{padding:10px}
+.mbv-food{font-size:13px;color:#8A6B45;display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 0}
+
+/* 配对 */
+.mbp-sel{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;margin:10px 0}
+.mbp-sel select{border:3px solid var(--ink);background:var(--white);font-size:13px;padding:6px;max-width:180px}
+.mbp-art{display:flex;align-items:center;justify-content:center;gap:10px;margin:10px 0}
+.mbp-line{font-size:14px;line-height:1.9;color:#5F4531;background:var(--paper);border:2px solid #D9B98A;
+  padding:12px;max-width:520px;margin:0 auto;text-align:left}
+
+/* 收藏馆 16 型 */
+.mb-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mb-gcell{border:3px solid var(--ink);background:var(--white);padding:8px 4px;text-align:center}
+.mb-gcell.got{background:var(--yellow-l)}
+.mb-gcell b{display:block;font-size:11px;margin-top:4px}
+.mb-gcell small{display:block;font-size:10px;color:#A89272}
+.mb-glock{display:block;height:56px;line-height:56px;font-family:var(--font-px);font-size:12px;color:#C4B294}
+.mb-gnote{grid-column:1/-1;font-size:12px;color:#8A6B45;text-align:center;margin-top:6px}
+
+/* 手机端：上方剧情 + 下方两个大按钮 */
+@media (max-width:640px){
+  .mb-choices{grid-template-columns:1fr}
+  .mb-opt{min-height:62px;padding:12px}
+  .mb-opt span{font-size:14px}
+  .mb-scene{flex-direction:column;text-align:center;gap:6px}
+  .mb-quote{font-size:11px}
+  .mb-grid,.mb-gallery{grid-template-columns:repeat(4,1fr);gap:5px}
+  .mb-cell b,.mb-gcell b{font-size:10px}
+  .mb-btns .btn{min-height:40px}
+}

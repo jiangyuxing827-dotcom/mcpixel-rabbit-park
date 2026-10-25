@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "source": "mixed",
+    "label": "官方营养与活动快照 · 价格为演示",
+    "updatedAt": "2026-10-25 20:56:26 +08:00",
+    "store": "未验证门店",
+    "mcdMcpConnected": false,
+    "note": "官方营养与活动为抓取快照，非实时连接。价格、库存及未匹配营养为演示。",
+    "nutritionMatched": 8,
+    "nutritionRecordCount": 160
+  },
+  "items": [
+    {
+      "id": "m1",
+      "name": "麦辣鸡腿堡",
+      "price": 22,
+      "calories": 485.0,
+      "category": "主食",
+      "tags": [
+        "辣",
+        "官方营养"
+      ],
+      "art": "burger",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 24.0,
+        "fat": 24.0,
+        "carbohydrate": 42.0,
+        "sodium": 1208.0,
+        "calcium": 154.0,
+        "calories": 485.0
+      },
+      "nutritionSourceName": "麦辣鸡腿汉堡",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "m2",
+      "name": "麦香鸡",
+      "price": 15,
+      "calories": 369.0,
+      "category": "主食",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "burger",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 15.0,
+        "fat": 17.0,
+        "carbohydrate": 39.0,
+        "sodium": 731.0,
+        "calcium": 73.0,
+        "calories": 369.0
+      },
+      "nutritionSourceName": "麦香鸡",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "m3",
+      "name": "双层吉士汉堡",
+      "price": 25,
+      "calories": 429.0,
+      "category": "主食",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "burger2",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 27.0,
+        "fat": 22.0,
+        "carbohydrate": 31.0,
+        "sodium": 1017.0,
+        "calcium": 232.0,
+        "calories": 429.0
+      },
+      "nutritionSourceName": "双层吉士汉堡",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "s1",
+      "name": "薯条（中）",
+      "price": 12,
+      "calories": 289.0,
+      "category": "小食",
+      "tags": [
+        "人气",
+        "官方营养"
+      ],
+      "art": "fries",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 4.0,
+        "fat": 12.0,
+        "carbohydrate": 38.0,
+        "sodium": 165.0,
+        "calcium": 18.0,
+        "calories": 289.0
+      },
+      "nutritionSourceName": "中薯条",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "s2",
+      "name": "麦乐鸡（5块）",
+      "price": 13,
+      "calories": 213.0,
+      "category": "小食",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "nuggets",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 12.0,
+        "fat": 12.0,
+        "carbohydrate": 13.0,
+        "sodium": 422.0,
+        "calcium": 9.0,
+        "calories": 213.0
+      },
+      "nutritionSourceName": "麦乐鸡5块",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "s3",
+      "name": "洋葱环",
+      "price": 11,
+      "calories": 210,
+      "category": "小食",
+      "tags": [
+        "演示热量"
+      ],
+      "art": "rings",
+      "priceSource": "demo"
+    },
+    {
+      "id": "d1",
+      "name": "可乐（中）",
+      "price": 10,
+      "calories": 147.0,
+      "category": "饮料",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "cup",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 0.0,
+        "fat": 0.0,
+        "carbohydrate": 36.0,
+        "sodium": 0.0,
+        "calcium": 10.0,
+        "calories": 147.0
+      },
+      "nutritionSourceName": "可乐中杯",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "d2",
+      "name": "雪碧（中）",
+      "price": 10,
+      "calories": 105.0,
+      "category": "饮料",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "cup",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 0.0,
+        "fat": 0.0,
+        "carbohydrate": 26.0,
+        "sodium": 29.0,
+        "calcium": 0.0,
+        "calories": 105.0
+      },
+      "nutritionSourceName": "雪碧中杯",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    },
+    {
+      "id": "t1",
+      "name": "冰旋风",
+      "price": 16,
+      "calories": 390,
+      "category": "甜品",
+      "tags": [
+        "演示热量"
+      ],
+      "art": "swirl",
+      "priceSource": "demo"
+    },
+    {
+      "id": "t2",
+      "name": "香芋派",
+      "price": 9,
+      "calories": 232.0,
+      "category": "甜品",
+      "tags": [
+        "官方营养"
+      ],
+      "art": "pie",
+      "priceSource": "demo",
+      "nutrition": {
+        "protein": 2.0,
+        "fat": 12.0,
+        "carbohydrate": 28.0,
+        "sodium": 159.0,
+        "calcium": 7.0,
+        "calories": 232.0
+      },
+      "nutritionSourceName": "香芋派",
+      "nutritionSource": "mcd-mcp:list-nutrition-foods"
+    }
+  ],
+  "campaigns": [
+    {
+      "name": "麦当劳「我就喜欢」限定丝巾正式开售🔥",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "韩式风味蘸酱上新❤️就「酱」心有所「薯」",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "麦当劳 X PEACEMINUSONE",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "麦当劳 X PEACEMINUSONE",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "麦当劳联动G-DRAGON ",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "🫐一口爆汁！蓝莓爆爆珠麦旋风上新",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "🍫麦咖啡13.9r浓浓黑巧来啦！",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "麦咖啡一早现磨🥳元气早餐震撼来袭！",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "🩶灰白撞色，灰焰圆筒酷爽登场",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "学生专属！49元150天麦金学期卡💳",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "过家家派对上线，快来一起解锁梦想职业",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "“韩”风刮到了四件套~龙焰鸡腿堡来袭！",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "乐享90分钟高质量亲子时间",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "快来一起参加麦麦派对吧！",
+      "date": "2026-10-25"
+    },
+    {
+      "name": "下周麦麦省优惠预告来啦😁",
+      "date": "2026-10-26"
+    },
+    {
+      "name": "麦当劳 X PEACEMINUSONE",
+      "date": "2026-10-27"
+    },
+    {
+      "name": "麦当劳 X PEACEMINUSONE",
+      "date": "2026-10-28"
+    },
+    {
+      "name": "麦当劳「我就喜欢」限定丝巾正式开售🔥",
+      "date": "2026-10-30"
+    },
+    {
+      "name": "🍫麦咖啡13.9r浓浓黑巧来啦！",
+      "date": "2026-10-30"
+    },
+    {
+      "name": "韩式风味蘸酱上新❤️就「酱」心有所「薯」",
+      "date": "2026-10-31"
+    },
+    {
+      "name": "麦当劳联动G-DRAGON ",
+      "date": "2026-11-01"
+    },
+    {
+      "name": "🩶灰白撞色，灰焰圆筒酷爽登场",
+      "date": "2026-11-01"
+    },
+    {
+      "name": "“韩”风刮到了四件套~龙焰鸡腿堡来袭！",
+      "date": "2026-11-02"
+    },
+    {
+      "name": "🫐一口爆汁！蓝莓爆爆珠麦旋风上新",
+      "date": "2026-11-03"
+    },
+    {
+      "name": "快来一起参加麦麦派对吧！",
+      "date": "2026-11-11"
+    },
+    {
+      "name": "乐享90分钟高质量亲子时间",
+      "date": "2026-11-12"
+    }
+  ],
+  "deals": []
+}
